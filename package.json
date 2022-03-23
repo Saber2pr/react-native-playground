@@ -1,0 +1,71 @@
+{
+  "name": "react-ts",
+  "version": "0.0.1",
+  "description": "react, ts, less tpl",
+  "private": true,
+  "scripts": {
+    "start": "cross-env NODE_ENV=development webpack -w",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server",
+    "lint": "prettier --write ./src",
+    "build": "rimraf ./build && cross-env NODE_ENV=production webpack",
+    "prepare": "husky install"
+  },
+  "author": "saber2pr",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Saber2pr/react-ts.git"
+  },
+  "license": "ISC",
+  "keywords": [
+    "react",
+    "ts",
+    "less",
+    "tpl"
+  ],
+  "dependencies": {
+    "@saber2pr/monaco": "^0.0.9",
+    "antd": "^4.18.7",
+    "normalize.css": "^8.0.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/react": "^16.8.19",
+    "@types/react-dom": "^16.8.4",
+    "@types/styled-components": "^5.1.21",
+    "@types/webpack": "^5.28.0",
+    "@types/webpack-dev-server": "^4.7.2",
+    "babel-loader": "^8.2.3",
+    "babel-plugin-import": "^1.13.3",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "cross-env": "^6.0.0",
+    "css-loader": "^2.1.1",
+    "html-webpack-plugin": "^5.5.0",
+    "husky": "^7.0.4",
+    "less": "^3.9.0",
+    "less-loader": "^5.0.0",
+    "lint-staged": "^12.3.4",
+    "mini-css-extract-plugin": "^1.6.1",
+    "monaco-editor-webpack-plugin": "4.2.0",
+    "prettier": "^2.5.1",
+    "rimraf": "^3.0.2",
+    "style-loader": "^0.23.1",
+    "typescript": "^4.5.5",
+    "url-loader": "^2.0.0",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "yarn lint",
+      "git add ."
+    ]
+  }
+}
