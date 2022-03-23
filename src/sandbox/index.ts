@@ -11,7 +11,6 @@ const oldLoad = requirejs.load
 requirejs.load = function (context, id, url) {
   if (id in library.dependencies) {
     url = library.dependencies[id]
-    console.log(id, url)
   }
   return oldLoad.call(requirejs, context, id, url)
 }`,
