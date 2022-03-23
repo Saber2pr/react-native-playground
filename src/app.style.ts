@@ -4,7 +4,7 @@ export const Container = styled.div`
   width: 100%;
   display: flex;
   overflow: hidden;
-  padding: 24px 0;
+  padding-bottom: 24px;
   box-sizing: border-box;
   background-color: #323233;
 `
@@ -18,4 +18,19 @@ export const Preview = styled.iframe`
   border: 0;
   height: calc(100vh - 48px);
   background-color: white;
+`
+
+export const Title = styled.div`
+  height: 24px;
+  background-color: #323233;
+  color: white;
+  font-size: 14px;
+  line-height: 24px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 8px;
+
+  a {
+    color: lightblue;
+  }
 `

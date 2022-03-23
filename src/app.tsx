@@ -10,7 +10,7 @@ import {
   makeSandCode,
 } from '@saber2pr/monaco'
 
-import { Container, Editor, Preview } from './app.style'
+import { Container, Editor, Preview, Title } from './app.style'
 import { files } from './files'
 import { sandbox } from './sandbox'
 import { library } from './sandbox/library'
@@ -47,10 +47,21 @@ export const App = () => {
   }, [])
 
   return (
-    <Container>
-      <Editor ref={ref} />
-      <Preview ref={previewRef} />
-    </Container>
+    <>
+      <Title>
+        <span>ReactNative Playground</span>
+        <a
+          target="_blank"
+          href="https://github.com/Saber2pr/react-native-playground"
+        >
+          Saber2pr/react-native-playground
+        </a>
+      </Title>
+      <Container>
+        <Editor ref={ref} />
+        <Preview ref={previewRef} />
+      </Container>
+    </>
   )
 }
 
