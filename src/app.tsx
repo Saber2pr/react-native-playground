@@ -1,14 +1,9 @@
 import 'normalize.css'
 
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import ReactDOM from 'react-dom'
 
-import {
-  addModuleDeclaration,
-  compileTS,
-  createEditor,
-  makeSandCode,
-} from '@saber2pr/monaco'
+import { makeSandCode } from '@saber2pr/monaco'
 
 import { Container, Editor, Preview, Title } from './app.style'
 import { files } from './files'
@@ -16,36 +11,7 @@ import { sandbox } from './sandbox'
 import { library } from './sandbox/library'
 
 export const App = () => {
-  const ref = useRef<HTMLDivElement>()
   const previewRef = useRef<HTMLIFrameElement>()
-
-  useEffect(() => {
-    const editor = createEditor(ref.current, files, {
-      theme: 'vs-dark',
-    })
-
-    Promise.all(
-      Object.keys(library.types).map((id) =>
-        addModuleDeclaration(library.types[id], id),
-      ),
-    )
-
-    const compile = () =>
-      compileTS(editor.getModel().uri).then(async (js) => {
-        previewRef.current.srcdoc = makeSandCode(
-          {
-            main: js,
-            ...sandbox,
-          },
-          'pro',
-        )
-      })
-
-    editor.getModel().onDidChangeContent(compile)
-
-    compile()
-  }, [])
-
   return (
     <>
       <Title>
@@ -58,7 +24,25 @@ export const App = () => {
         </a>
       </Title>
       <Container>
-        <Editor ref={ref} />
+        <Editor
+          modalFiles={files}
+          theme="monokai"
+          types={library.types}
+          onInit={(editor) => {
+            const compile = async () => {
+              const { output } = await editor.getOutput()
+              previewRef.current.srcdoc = makeSandCode(
+                {
+                  main: output,
+                  ...sandbox,
+                },
+                'pro',
+              )
+            }
+            editor.getModel().onDidChangeContent(compile)
+            compile()
+          }}
+        />
         <Preview ref={previewRef} />
       </Container>
     </>

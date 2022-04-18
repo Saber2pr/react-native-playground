@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Editor as MonacoEditor } from '@saber2pr/monaco'
 
 export const Container = styled.div`
   width: 100%;
@@ -8,7 +9,7 @@ export const Container = styled.div`
   box-sizing: border-box;
   background-color: #323233;
 `
-export const Editor = styled.div`
+export const Editor = styled(MonacoEditor)`
   flex-grow: 1;
   height: calc(100vh - 48px);
 `

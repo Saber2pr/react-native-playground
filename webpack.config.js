@@ -1,7 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const path = require('path')
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 
 const webpack = require('webpack')
 
@@ -52,7 +51,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new MonacoWebpackPlugin(),
     // index.html模板设置
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'template.html'),

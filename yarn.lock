@@ -1106,6 +1106,13 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@monaco-editor/loader@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.npmmirror.com/@monaco-editor/loader/-/loader-1.3.0.tgz#659fbaf1d612ea67b2a0519a18612d1c4813e444"
+  integrity sha512-N3mGq1ktC3zh7WUx3NGO+PSDdNq9Vspk/41rEmRdrCqV9vNbBTRzAOplmUpNQsi+hmTs++ERMBobMERb8Kb+3g==
+  dependencies:
+    state-local "^1.0.6"
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
@@ -1127,12 +1134,13 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@saber2pr/monaco@^0.0.9":
-  version "0.0.9"
-  resolved "https://registry.npmjs.org/@saber2pr/monaco/-/monaco-0.0.9.tgz#fd5b8da5cf731e8fa29a96fc4747775bfb7657c8"
-  integrity sha512-QulsZ4QyxBQFCmOcPMc8SfXu8F9UyW+/+4nIMLJhPKAfg5AU0UVr5O2LB+GlNfaaLMv7Z6mDcNtDSyPeyWR7pA==
+"@saber2pr/monaco@^0.0.35":
+  version "0.0.35"
+  resolved "https://registry.npmmirror.com/@saber2pr/monaco/-/monaco-0.0.35.tgz#6141e2194610d285f6ab1ec508fbfd00d73443d5"
+  integrity sha512-I0bhbywY2M/76Wv1D8WFXUp+87VQorlwzliWMNp4qtTA7i4EMV31Hly/A1kaZoDXZZ8cq3kPbqybufSBlsRdzg==
   dependencies:
-    monaco-editor "^0.28.1"
+    "@monaco-editor/loader" "^1.3.0"
+    monaco-editor "^0.33.0"
 
 "@types/body-parser@*":
   version "1.19.2"
@@ -3463,17 +3471,10 @@ moment@^2.24.0, moment@^2.25.3:
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
   integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
 
-monaco-editor-webpack-plugin@4.2.0:
-  version "4.2.0"
-  resolved "https://registry.npmjs.org/monaco-editor-webpack-plugin/-/monaco-editor-webpack-plugin-4.2.0.tgz#2be76cde9cca7bd8c3418503625990f86886927b"
-  integrity sha512-/P3sFiEgBl+Y50he4mbknMhbLJVop5gBUZiPS86SuHUDOOnQiQ5rL1jU5lwt1XKAwMEkhwZbUwqaHxTPkb1Utw==
-  dependencies:
-    loader-utils "^2.0.0"
-
-monaco-editor@^0.28.1:
-  version "0.28.1"
-  resolved "https://registry.npmjs.org/monaco-editor/-/monaco-editor-0.28.1.tgz#732788ff2172d59e6d436b206da8cac715413940"
-  integrity sha512-P1vPqxB4B1ZFzTeR1ScggSp9/5NoQrLCq88fnlNUsuRAP1usEBN4TIpI2lw0AYIZNVIanHk0qwjze2uJwGOHUw==
+monaco-editor@^0.33.0:
+  version "0.33.0"
+  resolved "https://registry.npmmirror.com/monaco-editor/-/monaco-editor-0.33.0.tgz#842e244f3750a2482f8a29c676b5684e75ff34af"
+  integrity sha512-VcRWPSLIUEgQJQIE0pVT8FcGBIgFoxz7jtqctE+IiCxWugD0DwgyQBcZBhdSrdMC84eumoqMZsGl2GTreOzwqw==
 
 ms@2.0.0:
   version "2.0.0"
@@ -4781,6 +4782,11 @@ spdy@^4.0.2:
     http-deceiver "^1.2.7"
     select-hose "^2.0.0"
     spdy-transport "^3.0.0"
+
+state-local@^1.0.6:
+  version "1.0.7"
+  resolved "https://registry.npmmirror.com/state-local/-/state-local-1.0.7.tgz#da50211d07f05748d53009bee46307a37db386d5"
+  integrity sha512-HTEHMNieakEnoe33shBYcZ7NX83ACUjCu8c40iOGEZsngj9zRnkqS9j1pqQPXwobB0ZcVTk27REb7COQ0UR59w==
 
 "statuses@>= 1.4.0 < 2", "statuses@>= 1.5.0 < 2", statuses@~1.5.0:
   version "1.5.0"
