@@ -10,17 +10,29 @@ import { files } from './files'
 import { sandbox } from './sandbox'
 import { library } from './sandbox/library'
 
+const title =
+  typeof __IDE_TITLE__ === 'undefined'
+    ? 'ReactNative Playground'
+    : __IDE_TITLE__
+
+const link_name =
+  typeof __IDE_LINK_NAME__ === 'undefined'
+    ? 'Saber2pr/react-native-playground'
+    : __IDE_LINK_NAME__
+
+const link_href =
+  typeof __IDE_LINK_HREF__ === 'undefined'
+    ? 'https://github.com/Saber2pr/react-native-playground'
+    : __IDE_LINK_HREF__
+
 export const App = () => {
   const previewRef = useRef<HTMLIFrameElement>()
   return (
     <>
       <Title>
-        <span>ReactNative Playground</span>
-        <a
-          target="_blank"
-          href="https://github.com/Saber2pr/react-native-playground"
-        >
-          Saber2pr/react-native-playground
+        <span>{title}</span>
+        <a target="_blank" href={link_href}>
+          {link_name}
         </a>
       </Title>
       <Container>

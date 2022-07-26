@@ -3,8 +3,13 @@ import lz from 'lz-string'
 
 import { library } from './library'
 
+const html =
+  typeof __IDE_HTML__ !== 'undefined'
+    ? lz.decompressFromBase64(__IDE_HTML__)
+    : ''
+
 export const sandbox: HtmlContentFiles = {
-  html: '<script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs/require.js"></script><div id="root"></div>',
+  html: `${html}<script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs/require.js"></script><div id="root"></div>`,
   js: `
 window.process = { env: { NODE_ENV: "production" } }
 const library = ${JSON.stringify(library)}
@@ -18,7 +23,7 @@ requirejs.load = function (context, id, url) {
 
 ${
   typeof __IDE_REQUIRE_CONFIG__ !== 'undefined'
-    ? lz.decompress(__IDE_REQUIRE_CONFIG__)
+    ? lz.decompressFromBase64(__IDE_REQUIRE_CONFIG__)
     : ''
 }
 

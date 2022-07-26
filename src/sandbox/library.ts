@@ -2,16 +2,16 @@ import lz from 'lz-string'
 
 const libs =
   typeof __IDE_LIBRARY__ !== 'undefined'
-    ? JSON.parse(lz.decompress(__IDE_LIBRARY__))
+    ? JSON.parse(lz.decompressFromBase64(__IDE_LIBRARY__))
     : {}
 
 export const library = {
   dependencies: {
-    react: 'https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js',
+    react: 'https://cdn.jsdelivr.net/npm/react@17.0.2/umd/react.development.js',
     'react-native':
       'https://cdn.jsdelivr.net/gh/saber2pr-forks/react-native-umd@gh-pages/dist/umd/index.umd.js',
     'react-dom':
-      'https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js',
+      'https://cdn.jsdelivr.net/npm/react-dom@17.0.2/umd/react-dom.development.js',
     axios: 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js',
     moment: 'https://cdn.jsdelivr.net/npm/moment/moment.js',
     antd: 'https://cdn.jsdelivr.net/npm/antd/dist/antd.min.js',
