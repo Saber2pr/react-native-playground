@@ -1,5 +1,7 @@
 const libs =
-  typeof __IDE_LIBRARY__ !== 'undefined' ? JSON.parse(__IDE_LIBRARY__) : {}
+  typeof __IDE_LIBRARY__ !== 'undefined'
+    ? JSON.parse(decodeURIComponent(__IDE_LIBRARY__))
+    : {}
 
 export const library = {
   dependencies: {

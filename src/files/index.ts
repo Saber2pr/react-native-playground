@@ -1,7 +1,7 @@
 export const files = {
   '/main.tsx':
     typeof __IDE_TEXT__ !== 'undefined'
-      ? __IDE_TEXT__
+      ? decodeURIComponent(__IDE_TEXT__)
       : `import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 

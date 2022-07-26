@@ -15,7 +15,11 @@ requirejs.load = function (context, id, url) {
   return oldLoad.call(requirejs, context, id, url)
 }
 
-${typeof __IDE_REQUIRE_CONFIG__ !== 'undefined' ? __IDE_REQUIRE_CONFIG__ : ''}
+${
+  typeof __IDE_REQUIRE_CONFIG__ !== 'undefined'
+    ? decodeURIComponent(__IDE_REQUIRE_CONFIG__)
+    : ''
+}
 
 `,
   mainRequireFunc: `(app) => {
