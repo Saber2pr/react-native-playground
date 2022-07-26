@@ -13,7 +13,11 @@ requirejs.load = function (context, id, url) {
     url = library.dependencies[id]
   }
   return oldLoad.call(requirejs, context, id, url)
-}`,
+}
+
+${typeof __IDE_REQUIRE_CONFIG__ !== 'undefined' ? __IDE_REQUIRE_CONFIG__ : ''}
+
+`,
   mainRequireFunc: `(app) => {
     require(['react-dom', 'react'], (ReactDOM, React) => {
       ReactDOM.render(React.createElement(app.default), document.querySelector('#root'))

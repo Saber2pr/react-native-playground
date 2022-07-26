@@ -1,5 +1,8 @@
 export const files = {
-  '/main.tsx': `import React, { Component } from 'react';
+  '/main.tsx':
+    typeof __IDE_TEXT__ !== 'undefined'
+      ? __IDE_TEXT__
+      : `import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 
 // 👇 修改下面的代码试试！

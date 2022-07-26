@@ -1,3 +1,6 @@
+const libs =
+  typeof __IDE_LIBRARY__ !== 'undefined' ? JSON.parse(__IDE_LIBRARY__) : {}
+
 export const library = {
   dependencies: {
     react: 'https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js',
@@ -10,6 +13,7 @@ export const library = {
     antd: 'https://cdn.jsdelivr.net/npm/antd/dist/antd.min.js',
     '@ant-design/icons':
       'https://cdn.jsdelivr.net/npm/@ant-design/icons/dist/index.umd.js',
+    ...(libs.dependencies || {}),
   },
   types: {
     react: 'https://cdn.jsdelivr.net/npm/@types/react/index.d.ts',
@@ -24,5 +28,6 @@ export const library = {
       'https://cdn.jsdelivr.net/gh/saber2pr/antd-types-bundle@gh-pages/antd.d.ts',
     '@ant-design/icons':
       'https://cdn.jsdelivr.net/npm/@ant-design/icons/lib/icons/index.d.ts',
+    ...(libs.types || {}),
   },
 }
