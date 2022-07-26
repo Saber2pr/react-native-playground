@@ -1,4 +1,5 @@
 import { HtmlContentFiles } from '@saber2pr/monaco'
+import lz from 'lz-string'
 
 import { library } from './library'
 
@@ -17,7 +18,7 @@ requirejs.load = function (context, id, url) {
 
 ${
   typeof __IDE_REQUIRE_CONFIG__ !== 'undefined'
-    ? decodeURIComponent(__IDE_REQUIRE_CONFIG__)
+    ? lz.decompress(__IDE_REQUIRE_CONFIG__)
     : ''
 }
 

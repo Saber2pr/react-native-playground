@@ -1,6 +1,8 @@
+import lz from 'lz-string'
+
 const libs =
   typeof __IDE_LIBRARY__ !== 'undefined'
-    ? JSON.parse(decodeURIComponent(__IDE_LIBRARY__))
+    ? JSON.parse(lz.decompress(__IDE_LIBRARY__))
     : {}
 
 export const library = {

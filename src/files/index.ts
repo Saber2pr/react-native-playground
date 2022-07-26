@@ -1,7 +1,9 @@
+import lz from 'lz-string'
+
 export const files = {
   '/main.tsx':
     typeof __IDE_TEXT__ !== 'undefined'
-      ? decodeURIComponent(__IDE_TEXT__)
+      ? lz.decompress(__IDE_TEXT__)
       : `import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 
