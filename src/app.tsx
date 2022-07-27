@@ -10,29 +10,22 @@ import { files } from './files'
 import { sandbox } from './sandbox'
 import { library } from './sandbox/library'
 
-const title =
-  typeof __IDE_TITLE__ === 'undefined'
-    ? 'ReactNative Playground'
-    : __IDE_TITLE__
-
-const link_name =
-  typeof __IDE_LINK_NAME__ === 'undefined'
-    ? 'Saber2pr/react-native-playground'
-    : __IDE_LINK_NAME__
-
-const link_href =
-  typeof __IDE_LINK_HREF__ === 'undefined'
-    ? 'https://github.com/Saber2pr/react-native-playground'
-    : __IDE_LINK_HREF__
+import {
+  ide_core_url,
+  ide_link_href,
+  ide_link_name,
+  ide_title,
+  ide_ts_type,
+} from './globalVars'
 
 export const App = () => {
   const previewRef = useRef<HTMLIFrameElement>()
   return (
     <>
       <Title>
-        <span>{title}</span>
-        <a target="_blank" href={link_href}>
-          {link_name}
+        <span>{ide_title}</span>
+        <a target="_blank" href={ide_link_href}>
+          {ide_link_name}
         </a>
       </Title>
       <Container>
@@ -40,6 +33,15 @@ export const App = () => {
           modalFiles={files}
           theme="monokai"
           types={library.types}
+          loaderConfig={
+            ide_core_url
+              ? {
+                  paths: {
+                    vs: ide_core_url,
+                  },
+                }
+              : undefined
+          }
           onInit={(editor) => {
             const compile = async () => {
               const { output } = await editor.getOutput()
@@ -52,6 +54,7 @@ export const App = () => {
               )
             }
             editor.getModel().onDidChangeContent(compile)
+            ide_ts_type && editor.addExtraLib(ide_ts_type)
             compile()
           }}
         />

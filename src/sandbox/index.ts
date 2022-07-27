@@ -1,15 +1,10 @@
+import { ide_html, ide_require_config } from './../globalVars'
 import { HtmlContentFiles } from '@saber2pr/monaco'
-import lz from 'lz-string'
 
 import { library } from './library'
 
-const html =
-  typeof __IDE_HTML__ !== 'undefined'
-    ? lz.decompressFromBase64(__IDE_HTML__)
-    : ''
-
 export const sandbox: HtmlContentFiles = {
-  html: `${html}<script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs/require.js"></script><div id="root"></div>`,
+  html: `${ide_html}<script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs/require.js"></script><div id="root"></div>`,
   js: `
 window.process = { env: { NODE_ENV: "production" } }
 const library = ${JSON.stringify(library)}
@@ -21,11 +16,7 @@ requirejs.load = function (context, id, url) {
   return oldLoad.call(requirejs, context, id, url)
 }
 
-${
-  typeof __IDE_REQUIRE_CONFIG__ !== 'undefined'
-    ? lz.decompressFromBase64(__IDE_REQUIRE_CONFIG__)
-    : ''
-}
+${ide_require_config}
 
 `,
   mainRequireFunc: `(app) => {
