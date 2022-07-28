@@ -13,20 +13,22 @@ import lz from 'lz-string'
 export const ide_title =
   typeof __IDE_TITLE__ !== 'undefined'
     ? lz.decompressFromBase64(__IDE_TITLE__)
-    : null
+    : 'ReactNative Playground'
 
 export const ide_link_name =
   typeof __IDE_LINK_NAME__ !== 'undefined'
     ? lz.decompressFromBase64(__IDE_LINK_NAME__)
-    : null
-export const ide_link_href =
+    : 'Saber2pr/react-native-playground'
+
+    export const ide_link_href =
   typeof __IDE_LINK_HREF__ !== 'undefined'
     ? lz.decompressFromBase64(__IDE_LINK_HREF__)
-    : null
+    : 'https://github.com/Saber2pr/react-native-playground'
+
 export const ide_html =
   typeof __IDE_HTML__ !== 'undefined'
     ? lz.decompressFromBase64(__IDE_HTML__)
-    : null
+    : ''
 
 export const ide_text =
   typeof __IDE_TEXT__ !== 'undefined'
@@ -56,7 +58,7 @@ export const ide_library =
 export const ide_require_config =
   typeof __IDE_REQUIRE_CONFIG__ !== 'undefined'
     ? lz.decompressFromBase64(__IDE_REQUIRE_CONFIG__)
-    : null
+    : ''
 
 export const ide_core_url =
   typeof __IDE_CORE_URL__ !== 'undefined'
