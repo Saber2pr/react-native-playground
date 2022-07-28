@@ -4,7 +4,7 @@ import { HtmlContentFiles } from '@saber2pr/monaco'
 import { library } from './library'
 
 export const sandbox: HtmlContentFiles = {
-  html: `${ide_html}<script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs/require.js"></script><div id="root"></div>`,
+  html: `${ide_html}`,
   js: `
 window.process = { env: { NODE_ENV: "production" } }
 const library = ${JSON.stringify(library)}
