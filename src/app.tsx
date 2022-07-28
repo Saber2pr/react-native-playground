@@ -44,6 +44,7 @@ export const App = () => {
           }
           onInit={(editor) => {
             const compile = async () => {
+              previewRef.current.srcdoc = `[TS Compiling]...`
               const { output } = await editor.getOutput()
               previewRef.current.srcdoc = makeSandCode(
                 {
@@ -58,7 +59,7 @@ export const App = () => {
             compile()
           }}
         />
-        <Preview ref={previewRef} />
+        <Preview ref={previewRef} srcDoc="[Initialization]..." />
       </Container>
     </>
   )
