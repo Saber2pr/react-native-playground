@@ -37,7 +37,7 @@ export const ide_text =
     : `import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 
-// 👇 修改下面的代码试试！
+// 👇 Try to edit the code below！
 export default class BlueIsCool extends Component {
   render() {
     return (
