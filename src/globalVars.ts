@@ -1,4 +1,5 @@
 declare const __IDE_TITLE__: string
+declare const __IDE_LOCALE__: string
 declare const __IDE_LINK_NAME__: string
 declare const __IDE_LINK_HREF__: string
 declare const __IDE_HTML__: string
@@ -69,3 +70,7 @@ export const ide_ts_type =
   typeof __IDE_TS_TYPE__ !== 'undefined'
     ? lz.decompressFromBase64(__IDE_TS_TYPE__)
     : null
+
+export const ide_locale = typeof __IDE_LOCALE__ !== 'undefined'
+? lz.decompressFromBase64(__IDE_LOCALE__)
+: null

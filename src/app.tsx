@@ -7,16 +7,15 @@ import { makeSandCode } from '@saber2pr/monaco'
 
 import { Container, Editor, Preview, Title } from './app.style'
 import { files } from './files'
-import { sandbox } from './sandbox'
-import { library } from './sandbox/library'
-
+import { loaderConfig } from './getLoaderConfig'
 import {
-  ide_core_url,
   ide_link_href,
   ide_link_name,
   ide_title,
   ide_ts_type,
 } from './globalVars'
+import { sandbox } from './sandbox'
+import { library } from './sandbox/library'
 
 export const App = () => {
   const previewRef = useRef<HTMLIFrameElement>()
@@ -33,15 +32,7 @@ export const App = () => {
           modalFiles={files}
           theme="monokai"
           types={library.types}
-          loaderConfig={
-            ide_core_url
-              ? {
-                  paths: {
-                    vs: ide_core_url,
-                  },
-                }
-              : undefined
-          }
+          loaderConfig={loaderConfig}
           onInit={(editor) => {
             const compile = async () => {
               previewRef.current.srcdoc = `[TS Compiling]...`
