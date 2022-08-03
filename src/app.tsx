@@ -1,6 +1,6 @@
 import 'normalize.css'
 
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import ReactDOM from 'react-dom'
 
 import { makeSandCode } from '@saber2pr/monaco'
@@ -16,9 +16,12 @@ import {
 } from './globalVars'
 import { sandbox } from './sandbox'
 import { library } from './sandbox/library'
+import { DevTools } from './DevTools'
+import { initializeReactDevToolsLatest } from './initLatestDevTools'
 
 export const App = () => {
   const previewRef = useRef<HTMLIFrameElement>()
+ 
   return (
     <>
       <Title>
@@ -37,20 +40,23 @@ export const App = () => {
             const compile = async () => {
               previewRef.current.srcdoc = `[TS Compiling]...`
               const { output } = await editor.getOutput()
-              previewRef.current.srcdoc = makeSandCode(
-                {
-                  main: output,
-                  ...sandbox,
-                },
-                'pro',
-              )
+              // previewRef.current.srcdoc = makeSandCode(
+              //   {
+              //     main: output,
+              //     ...sandbox,
+              //   },
+              //   'pro',
+              // )
+              ReactDOM.render(<ul>asd</ul>, previewRef.current.contentDocument.body)
+              initializeReactDevToolsLatest(previewRef.current)
             }
             editor.getModel().onDidChangeContent(compile)
             ide_ts_type && editor.addExtraLib(ide_ts_type)
             compile()
           }}
         />
-        <Preview ref={previewRef} srcDoc="[Initialization]..." />
+        <Preview id="sandbox-preview" ref={previewRef} srcDoc="[Initialization]..." />
+        <DevTools/>
       </Container>
     </>
   )
