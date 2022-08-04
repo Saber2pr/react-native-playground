@@ -11,6 +11,8 @@ declare const __IDE_TS_TYPE__: string
 
 import lz from 'lz-string'
 
+import { getQuery } from './utils/getQuery'
+
 export const ide_title =
   typeof __IDE_TITLE__ !== 'undefined'
     ? lz.decompressFromBase64(__IDE_TITLE__)
@@ -36,10 +38,13 @@ export const ide_html =
     </script>
     <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs/require.js"></script><div id="root"></div>`
 
-export const ide_text =
-  typeof __IDE_TEXT__ !== 'undefined'
-    ? lz.decompressFromBase64(__IDE_TEXT__)
-    : `import React, { Component } from 'react';
+const urlCode = getQuery('text')
+
+export const ide_text = urlCode
+  ? lz.decompressFromEncodedURIComponent(urlCode)
+  : typeof __IDE_TEXT__ !== 'undefined'
+  ? lz.decompressFromBase64(__IDE_TEXT__)
+  : `import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 
 // 👇 Try to edit the code below！

@@ -53,3 +53,9 @@ export const ReactDevTools = styled.div<{ show: boolean }>`
   left: 0;
   display: ${(props) => (props?.show ? 'block' : 'none')};
 `
+
+export const Space = styled.div`
+  & > *:nth-child(n + 1) {
+    margin-left: 4px;
+  }
+`

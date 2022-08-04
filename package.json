@@ -24,12 +24,10 @@
   ],
   "dependencies": {
     "@saber2pr/monaco": "^0.0.41",
-    "antd": "^4.18.7",
     "lz-string": "^1.4.4",
-    "normalize.css": "^8.0.1",
-    "react": "^0.0.0-experimental-9fcaf88d5-20220801",
+    "react": "^18.2.0",
     "react-devtools-inline": "4.4.0",
-    "react-dom": "^0.0.0-experimental-9fcaf88d5-20220801",
+    "react-dom": "^18.2.0",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
@@ -39,9 +37,9 @@
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
     "@types/lz-string": "^1.3.34",
-    "@types/react": "^16.8.19",
+    "@types/react": "^18.0.15",
     "@types/react-devtools-inline": "^4.24.0",
-    "@types/react-dom": "^16.8.4",
+    "@types/react-dom": "^18.0.6",
     "@types/styled-components": "^5.1.21",
     "@types/webpack": "^5.28.0",
     "@types/webpack-dev-server": "^4.7.2",

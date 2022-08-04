@@ -1,7 +1,10 @@
-import 'normalize.css'
+import './app.less'
 
-import React, { useEffect, useRef, useState } from 'react'
+import lz from 'lz-string'
+import React, { useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
+
+import { EditorAPI, makeSandCode } from '@saber2pr/monaco'
 
 import {
   Container,
@@ -9,6 +12,7 @@ import {
   Editor,
   Preview,
   ReactDevTools,
+  Space,
   Title,
 } from './app.style'
 import { files } from './files'
@@ -19,29 +23,45 @@ import {
   ide_title,
   ide_ts_type,
 } from './globalVars'
-import { library } from './sandbox/library'
 import { DevTools } from './react-devtools'
-import { makeSandCode } from '@saber2pr/monaco'
 import { sandbox } from './sandbox'
+import { library } from './sandbox/library'
 
 const sandboxId = 'sandbox-preview'
 
 export const App = () => {
   const previewRef = useRef<HTMLIFrameElement>()
 
+  const apiRef = useRef<EditorAPI>()
+
   const [showDevTools, setShowDevTools] = useState(true)
+
+  const openShareLink = () => {
+    const api = apiRef.current
+    if (api) {
+      const text = api.getValue()
+      window.open(`?text=${lz.compressToEncodedURIComponent(text)}`, '_blank')
+    }
+  }
 
   return (
     <>
       <Title>
         <span>{ide_title}</span>
-        <a target="_blank" href={ide_link_href}>
-          {ide_link_name}
-        </a>
+        <Space>
+          <a className="cursor-pointer" target="_blank" href={ide_link_href}>
+            {ide_link_name}
+          </a>
+          <span>-</span>
+          <a className="cursor-pointer" target="_blank" onClick={openShareLink}>
+            Share Code
+          </a>
+        </Space>
       </Title>
       <Container>
         <Content>
           <Editor
+            ref={apiRef}
             key={String(showDevTools)}
             size={showDevTools ? 'small' : 'normal'}
             modalFiles={files}
@@ -49,6 +69,7 @@ export const App = () => {
             types={library.types}
             loaderConfig={loaderConfig}
             onInit={(editor) => {
+              apiRef.current = editor
               const compile = async () => {
                 previewRef.current.srcdoc = `[TS Compiling]...`
                 const { output } = await editor.getOutput()
@@ -78,7 +99,10 @@ export const App = () => {
       </Container>
       <Title>
         <span>React Developer Tools</span>
-        <a onClick={() => setShowDevTools(!showDevTools)}>
+        <a
+          className="cursor-pointer"
+          onClick={() => setShowDevTools(!showDevTools)}
+        >
           {showDevTools ? 'Close' : 'Open'} Devtools
         </a>
       </Title>
