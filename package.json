@@ -27,9 +27,9 @@
     "antd": "^4.18.7",
     "lz-string": "^1.4.4",
     "normalize.css": "^8.0.1",
-    "react": "^0.0.0-experimental-9fcaf88d5-20220801",
+    "react": "^18.2.0",
     "react-devtools-inline": "4.4.0",
-    "react-dom": "^0.0.0-experimental-9fcaf88d5-20220801",
+    "react-dom": "^18.2.0",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {

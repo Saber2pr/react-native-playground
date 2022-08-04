@@ -1,6 +1,8 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback, useRef } from 'react'
 import * as reactDevtools from 'react-devtools-inline/frontend'
+
 import { Container } from './index.style'
+import { handleSelectFiberEvent } from './inspectDOMNode'
 
 const timeout = (delay = 1000) =>
   new Promise((resolve) => setTimeout(resolve, delay))
@@ -15,6 +17,7 @@ export type DevToolProps = {
 
 export const DevTools: React.FC<DevToolProps> = (props) => {
   const [ReactDevTools, setDevTools] = useState(null)
+  const ref = useRef()
   const unmounted = React.useRef(false)
 
   const loadIframe = useCallback(async () => {
@@ -32,6 +35,8 @@ export const DevTools: React.FC<DevToolProps> = (props) => {
       const { contentWindow } = iframe
 
       window.addEventListener('message', (event) => {
+        handleSelectFiberEvent(iframe, event.data)
+
         const message = event.data
         if (message.type === 'activate-react-devtools') {
           setDevTools(reactDevtools.initialize(contentWindow))

@@ -4357,23 +4357,23 @@ react-devtools-inline@4.4.0:
   dependencies:
     es6-symbol "^3"
 
-react-dom@^0.0.0-experimental-9fcaf88d5-20220801:
-  version "0.0.0-experimental-9fcaf88d5-20220801"
-  resolved "https://registry.npmjs.org/react-dom/-/react-dom-0.0.0-experimental-9fcaf88d5-20220801.tgz#1196680a1b93862572fe70962157ddeaaaeaed46"
-  integrity sha512-qAl/RQ3V4AuPaySkS8QQrvOayjI1x44pPaWDKDIPh1/N6ilAtCYKC/9mQjD+akeBkrlb2spsytP5EJsvIkpQag==
+react-dom@^18.2.0:
+  version "18.2.0"
+  resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz#22aaf38708db2674ed9ada224ca4aa708d821e3d"
+  integrity sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==
   dependencies:
     loose-envify "^1.1.0"
-    scheduler "0.0.0-experimental-9fcaf88d5-20220801"
+    scheduler "^0.23.0"
 
 react-is@^16.12.0, react-is@^16.7.0:
   version "16.13.1"
   resolved "https://registry.nlark.com/react-is/download/react-is-16.13.1.tgz?cache=0&sync_timestamp=1624637851057&other_urls=https%3A%2F%2Fregistry.nlark.com%2Freact-is%2Fdownload%2Freact-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha1-eJcppNw23imZ3BVt1sHZwYzqVqQ=
 
-react@^0.0.0-experimental-9fcaf88d5-20220801:
-  version "0.0.0-experimental-9fcaf88d5-20220801"
-  resolved "https://registry.npmjs.org/react/-/react-0.0.0-experimental-9fcaf88d5-20220801.tgz#85a1038ec4a09c79d42d6e682305638ab06e6e72"
-  integrity sha512-uf4Yjka3qCtMiHjC+LAWcC5PKVXbyWvvMyaHc/zKDSEAGE+X6j/0xwgchjcoOvArCkfCrvnT9Jh3wM1Og0L6CQ==
+react@^18.2.0:
+  version "18.2.0"
+  resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"
+  integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
   dependencies:
     loose-envify "^1.1.0"
 
@@ -4585,10 +4585,10 @@ safe-buffer@>=5.1.0, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@~5.2.0:
   resolved "https://registry.nlark.com/safer-buffer/download/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha1-RPoWGwGHuVSd2Eu5GAL5vYOFzWo=
 
-scheduler@0.0.0-experimental-9fcaf88d5-20220801:
-  version "0.0.0-experimental-9fcaf88d5-20220801"
-  resolved "https://registry.npmjs.org/scheduler/-/scheduler-0.0.0-experimental-9fcaf88d5-20220801.tgz#4c846ca42379a5cfe353bc6c856ba1f79ac99f2f"
-  integrity sha512-Y6NToPjuRH4ALBdkQRtqzdZtUnNSVo1iR3jmTEU50rLBqTaoBE3hcllg+BWDjWkvAxm2qvB6gvm6vr9J/4qlLA==
+scheduler@^0.23.0:
+  version "0.23.0"
+  resolved "https://registry.npmjs.org/scheduler/-/scheduler-0.23.0.tgz#ba8041afc3d30eb206a487b6b384002e4e61fdfe"
+  integrity sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==
   dependencies:
     loose-envify "^1.1.0"
 
