@@ -90,7 +90,7 @@ export const App = () => {
             size={showDevTools ? 'small' : 'normal'}
             id={sandboxId}
             ref={previewRef}
-            srcDoc="[Initialization]..."
+            srcDoc="[Sandbox Initialization]..."
           />
         </Content>
         <ReactDevTools show={showDevTools}>

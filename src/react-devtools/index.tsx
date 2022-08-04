@@ -53,9 +53,9 @@ export const DevTools: React.FC<DevToolProps> = (props) => {
 
   return (
     <Container>
-      {ReactDevTools && (
+      {ReactDevTools ? (
         <ReactDevTools browserTheme={props.browserTheme || 'light'} />
-      )}
+      ): <span style={{color: '#000'}}>[Waiting for Sandbox]...</span>}
     </Container>
   )
 }
