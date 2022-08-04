@@ -1272,12 +1272,27 @@
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.4.tgz#cd667bcfdd025213aafb7ca5915a932590acdcdc"
   integrity sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==
 
+"@types/react-devtools-inline@^4.24.0":
+  version "4.24.0"
+  resolved "https://registry.npmjs.org/@types/react-devtools-inline/-/react-devtools-inline-4.24.0.tgz#648ad198a99604d04ef4e496828855ec5212f119"
+  integrity sha512-z2s9JSptrgEe/zVaLMxPjRMIr1rT8x7Pp+SAlBtAsGfqSNiuf6iIDjtnTiz/CZq7wmIx/Lfd97cbTQGZig151Q==
+  dependencies:
+    "@types/react" "*"
+    "@types/react-reconciler" "*"
+
 "@types/react-dom@^16.8.4":
   version "16.9.16"
   resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-16.9.16.tgz#c591f2ed1c6f32e9759dfa6eb4abfd8041f29e39"
   integrity sha512-Oqc0RY4fggGA3ltEgyPLc3IV9T73IGoWjkONbsyJ3ZBn+UPPCYpU2ec0i3cEbJuEdZtkqcCF2l1zf2pBdgUGSg==
   dependencies:
     "@types/react" "^16"
+
+"@types/react-reconciler@*":
+  version "0.28.0"
+  resolved "https://registry.npmjs.org/@types/react-reconciler/-/react-reconciler-0.28.0.tgz#513acbed173140e958c909041ca14eb40412077f"
+  integrity sha512-5cjk9ottZAj7eaTsqzPUIlrVbh3hBAO2YaEL1rkjHKB3xNAId7oU8GhzvAX+gfmlfoxTwJnBjPxEHyxkEA1Ffg==
+  dependencies:
+    "@types/react" "*"
 
 "@types/react@*":
   version "17.0.38"

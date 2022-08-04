@@ -17,7 +17,7 @@ export const Editor = styled(MonacoEditor)<{ size: 'small' | 'normal' }>`
   height: ${(props) =>
     props.size === 'normal'
       ? `calc(100vh - 48px)`
-      : `calc(100vh - 50vh - 48px)`};
+      : `calc(100vh - 30vh - 48px)`};
 `
 
 export const Preview = styled.iframe<{ size: 'small' | 'normal' }>`
@@ -26,7 +26,7 @@ export const Preview = styled.iframe<{ size: 'small' | 'normal' }>`
   height: ${(props) =>
     props.size === 'normal'
       ? `calc(100vh - 48px)`
-      : `calc(100vh - 50vh - 48px)`};
+      : `calc(100vh - 30vh - 48px)`};
   background-color: white;
 `
 
@@ -48,7 +48,7 @@ export const Title = styled.div`
 export const ReactDevTools = styled.div<{ show: boolean }>`
   position: fixed;
   width: 100%;
-  height: 50vh;
+  height: 30vh;
   bottom: 0;
   left: 0;
   display: ${(props) => (props?.show ? 'block' : 'none')};
