@@ -4,11 +4,11 @@ const libs = JSON.parse(ide_library)
 
 export const library = {
   dependencies: libs.dependencies || {
-    react: 'https://cdn.jsdelivr.net/npm/react@0.0.0-experimental-fe905f152-20220107/umd/react.production.min.js',
+    react: 'https://cdn.jsdelivr.net/npm/react@17.0.2/umd/react.development.js',
     'react-native':
       'https://cdn.jsdelivr.net/gh/saber2pr-forks/react-native-umd@gh-pages/dist/umd/index.umd.js',
     'react-dom':
-      'https://cdn.jsdelivr.net/npm/react-dom@0.0.0-experimental-fe905f152-20220107/umd/react-dom.production.min.js',
+      'https://cdn.jsdelivr.net/npm/react-dom@17.0.2/umd/react-dom.development.js',
     axios: 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js',
     moment: 'https://cdn.jsdelivr.net/npm/moment/moment.js',
     antd: 'https://cdn.jsdelivr.net/npm/antd/dist/antd.min.js',
