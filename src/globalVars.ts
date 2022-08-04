@@ -30,9 +30,9 @@ export const ide_html =
   typeof __IDE_HTML__ !== 'undefined'
     ? lz.decompressFromBase64(__IDE_HTML__)
     : `
-    <script src="./backend.min.js"></script>
+    <script src="./react-devtools-inline-backend.min.js"></script>
     <script>
-    initializeReactDevToolsLegacy()
+      initializeReactDevToolsLegacy()
     </script>
     <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs/require.js"></script><div id="root"></div>`
 
@@ -69,13 +69,14 @@ export const ide_require_config =
 export const ide_core_url =
   typeof __IDE_CORE_URL__ !== 'undefined'
     ? lz.decompressFromBase64(__IDE_CORE_URL__)
-     : 'https://static1.tuyacn.com/static/txp-static-txp-monaco-editor/min/vs'
+    : 'https://static1.tuyacn.com/static/txp-static-txp-monaco-editor/min/vs'
 
 export const ide_ts_type =
   typeof __IDE_TS_TYPE__ !== 'undefined'
     ? lz.decompressFromBase64(__IDE_TS_TYPE__)
     : null
 
-export const ide_locale = typeof __IDE_LOCALE__ !== 'undefined'
-? lz.decompressFromBase64(__IDE_LOCALE__)
-: null
+export const ide_locale =
+  typeof __IDE_LOCALE__ !== 'undefined'
+    ? lz.decompressFromBase64(__IDE_LOCALE__)
+    : null

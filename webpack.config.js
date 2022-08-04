@@ -13,13 +13,15 @@ const publicPath = (resourcePath, context) =>
 module.exports = {
   entry: {
     app: './src/app.tsx',
-    backend: "./src/initLatestDevTools.ts"
+    'react-devtools-inline-backend': "./src/initLatestDevTools.ts"
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   output: {
-    filename: '[name].min.js',
+    filename: (pathData) => {
+      return pathData.chunk.name === 'react-devtools-inline-backend' ? '[name].min.js': '[name]-[hash].js';
+    },
     path: path.join(__dirname, 'build'),
   },
   module: {
