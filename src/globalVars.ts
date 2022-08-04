@@ -74,7 +74,7 @@ export const ide_require_config =
 export const ide_core_url =
   typeof __IDE_CORE_URL__ !== 'undefined'
     ? lz.decompressFromBase64(__IDE_CORE_URL__)
-    : 'https://static1.tuyacn.com/static/txp-static-txp-monaco-editor/min/vs'
+    : null
 
 export const ide_ts_type =
   typeof __IDE_TS_TYPE__ !== 'undefined'
