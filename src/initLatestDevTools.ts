@@ -1,33 +1,10 @@
-import uuid from 'uuid';
-
-export async function initializeReactDevToolsLatest(iframe: HTMLIFrameElement) {
-  const window = iframe.contentWindow
+  async function initializeReactDevToolsLegacy() {
   if (!window.opener) {
-    const uid = uuid.v1();
-
-    const wall = {
-      listen(listener) {
-        window.addEventListener('message', event => {
-          if (event.data.uid === uid) {
-            listener(event.data);
-          }
-        });
-      },
-      send(event, payload) {
-        window.parent.postMessage({ event, payload, uid }, '*');
-      },
-    };
-
-    const {
-      activate: activateBackend,
-      createBridge: createBackendBridge,
-      initialize: initializeBackend,
-    } = await import(
+    const { initialize: initializeDevTools, activate } = await import(
       /* webpackChunkName: 'react-devtools-backend' */ 'react-devtools-inline/backend'
     );
-
     // The dispatch needs to happen before initializing, so that the backend can already listen
-    window.parent.postMessage({ type: 'activate-react-devtools', uid }, '*');
+    window.parent.postMessage({ type: 'activate-react-devtools' }, '*');
 
     // @ts-ignore
     if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ !== 'undefined') {
@@ -39,9 +16,9 @@ export async function initializeReactDevToolsLatest(iframe: HTMLIFrameElement) {
       }
     }
     // Call this before importing React (or any other packages that might import React).
-    initializeBackend(window);
-    activateBackend(window, {
-      bridge: createBackendBridge(window, wall),
-    });
+    initializeDevTools(window);
+    activate(window);
   }
 }
+
+window.initializeReactDevToolsLegacy = initializeReactDevToolsLegacy

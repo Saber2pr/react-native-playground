@@ -40,7 +40,6 @@ export const DevTools = (props) => {
 
       window.addEventListener('message', event => {
         const message = event.data
-        console.log("🚀 ~ file: DevTools.tsx ~ line 43 ~ loadIframe ~ message", message)
         if (message.type === 'activate-react-devtools') {
           setDevTools(reactDevtools.initialize(contentWindow));
         }

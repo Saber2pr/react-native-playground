@@ -11,12 +11,15 @@ const publicPath = (resourcePath, context) =>
  * @type {webpack.Configuration}
  */
 module.exports = {
-  entry: './src/app.tsx',
+  entry: {
+    app: './src/app.tsx',
+    backend: "./src/initLatestDevTools.ts"
+  },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   output: {
-    filename: '[name].[hash].min.js',
+    filename: '[name].min.js',
     path: path.join(__dirname, 'build'),
   },
   module: {

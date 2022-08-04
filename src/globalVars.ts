@@ -29,7 +29,12 @@ export const ide_link_href =
 export const ide_html =
   typeof __IDE_HTML__ !== 'undefined'
     ? lz.decompressFromBase64(__IDE_HTML__)
-    : '<script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs/require.js"></script><div id="root"></div>'
+    : `
+    <script src="./backend.min.js"></script>
+    <script>
+    initializeReactDevToolsLegacy()
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs/require.js"></script><div id="root"></div>`
 
 export const ide_text =
   typeof __IDE_TEXT__ !== 'undefined'
