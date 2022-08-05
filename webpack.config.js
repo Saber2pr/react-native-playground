@@ -13,7 +13,7 @@ const publicPath = (resourcePath, context) =>
 module.exports = {
   entry: {
     app: './src/app.tsx',
-    'react-devtools-inline-backend': "./src/initLatestDevTools.ts"
+    'react-devtools-inline-backend': "./src/initializeReactDevToolsLegacy.ts"
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],

@@ -23,7 +23,7 @@ import {
   ide_title,
   ide_ts_type,
 } from './globalVars'
-import { DevTools } from './react-devtools'
+import DevTools from '@saber2pr/monaco/lib/react/devtools'
 import { sandbox } from './sandbox'
 import { library } from './sandbox/library'
 
