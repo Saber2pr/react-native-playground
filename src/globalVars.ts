@@ -32,9 +32,9 @@ export const ide_html =
   typeof __IDE_HTML__ !== 'undefined'
     ? lz.decompressFromBase64(__IDE_HTML__)
     : `
-    <script src="./react-devtools-inline-backend.min.js"></script>
+    <script src="./install-sandbox.min.js"></script>
     <script>
-      initializeReactDevToolsLegacy()
+      installSandbox()
     </script>
     <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs/require.js"></script><div id="root"></div>`
 
@@ -84,4 +84,4 @@ export const ide_ts_type =
 export const ide_locale =
   typeof __IDE_LOCALE__ !== 'undefined'
     ? lz.decompressFromBase64(__IDE_LOCALE__)
-    : null
+    : 'zh-cn'

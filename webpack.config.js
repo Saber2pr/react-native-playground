@@ -13,14 +13,14 @@ const publicPath = (resourcePath, context) =>
 module.exports = {
   entry: {
     app: './src/app.tsx',
-    'react-devtools-inline-backend': "./src/initializeReactDevToolsLegacy.ts"
+    'install-sandbox': "@saber2pr/monaco/lib/react/devtools/install-sandbox"
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   output: {
     filename: (pathData) => {
-      return pathData.chunk.name === 'react-devtools-inline-backend' ? '[name].min.js': '[name]-[hash].js';
+      return pathData.chunk.name === 'install-sandbox' ? '[name].min.js': '[name]-[hash].js';
     },
     path: path.join(__dirname, 'build'),
   },
