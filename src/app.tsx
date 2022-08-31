@@ -5,6 +5,7 @@ import React, { useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 
 import { EditorAPI, makeSandCode } from '@saber2pr/monaco'
+import { Editor as MonacoEditor } from '@saber2pr/monaco'
 
 import {
   Container,
@@ -44,26 +45,60 @@ export const App = () => {
     }
   }
 
+  const DevtoolsControl = (
+    <Title>
+      <span>React Developer Tools</span>
+      <a
+        className="cursor-pointer"
+        onClick={() => setShowDevTools(!showDevTools)}
+      >
+        {showDevTools ? 'Close' : 'Open'} Devtools
+      </a>
+    </Title>
+  )
+
   return (
     <>
-      <Title>
-        <span>{ide_title}</span>
-        <Space>
-          <a className="cursor-pointer" target="_blank" href={ide_link_href}>
-            {ide_link_name}
-          </a>
-          <span>-</span>
-          <a className="cursor-pointer" target="_blank" onClick={openShareLink}>
-            Share Code
-          </a>
-        </Space>
-      </Title>
       <Container>
         <Content>
-          <Editor
-            ref={apiRef}
-            key={String(showDevTools)}
+          <Preview
             size={showDevTools ? 'small' : 'normal'}
+            id={sandboxId}
+            ref={previewRef}
+            srcDoc="[Sandbox Initialization]..."
+          />
+          <ReactDevTools show={showDevTools}>
+            {DevtoolsControl}
+            <DevTools browserTheme="dark" sandboxId={sandboxId} />
+          </ReactDevTools>
+        </Content>
+        <Editor
+          key={String(showDevTools)}
+          placement={showDevTools ? 'bottom' : 'right'}
+        >
+          <Title>
+            <span>{ide_title}</span>
+            <Space>
+              <a
+                className="cursor-pointer"
+                target="_blank"
+                href={ide_link_href}
+              >
+                {ide_link_name}
+              </a>
+              <span>-</span>
+              <a
+                className="cursor-pointer"
+                target="_blank"
+                onClick={openShareLink}
+              >
+                Share Code
+              </a>
+            </Space>
+          </Title>
+          <MonacoEditor
+            style={{ height: `calc(100% - ${showDevTools ? '24px' : '48px'})` }}
+            ref={apiRef}
             modalFiles={files}
             theme="monokai"
             types={library.types}
@@ -86,26 +121,9 @@ export const App = () => {
               compile()
             }}
           />
-          <Preview
-            size={showDevTools ? 'small' : 'normal'}
-            id={sandboxId}
-            ref={previewRef}
-            srcDoc="[Sandbox Initialization]..."
-          />
-        </Content>
-        <ReactDevTools show={showDevTools}>
-          <DevTools sandboxId={sandboxId} />
-        </ReactDevTools>
+          {!showDevTools && DevtoolsControl}
+        </Editor>
       </Container>
-      <Title>
-        <span>React Developer Tools</span>
-        <a
-          className="cursor-pointer"
-          onClick={() => setShowDevTools(!showDevTools)}
-        >
-          {showDevTools ? 'Close' : 'Open'} Devtools
-        </a>
-      </Title>
     </>
   )
 }
