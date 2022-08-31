@@ -69,7 +69,7 @@ export const App = () => {
           />
           <ReactDevTools show={showDevTools}>
             {DevtoolsControl}
-            <DevTools browserTheme="dark" sandboxId={sandboxId} />
+            <DevTools browserTheme="light" sandboxId={sandboxId} />
           </ReactDevTools>
         </Content>
         <Editor
