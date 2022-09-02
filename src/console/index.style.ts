@@ -9,6 +9,7 @@ export const Container = styled.div`
     margin: 0;
     border-bottom: 1px solid #e8e8e8;
     padding-left: 20px;
+    min-height: 20px;
     &:hover {
       background-color: #ecf1f8;
       border-bottom: 1px solid #ccdef5;
