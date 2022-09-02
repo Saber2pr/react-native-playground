@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { Editor as MonacoEditor } from '@saber2pr/monaco'
 
 export const Container = styled.div`
   width: 100%;
@@ -12,12 +11,12 @@ export const Content = styled.div`
   display: flex;
 `
 
-export const Editor = styled(MonacoEditor)<{ size: 'small' | 'normal' }>`
+export const Editor = styled.div<{ size: 'small' | 'normal' }>`
   flex-grow: 1;
   height: ${(props) =>
     props.size === 'normal'
-      ? `calc(100vh - 48px)`
-      : `calc(100vh - 30vh - 48px)`};
+      ? `calc(100vh - 24px)`
+      : `calc(100vh - 30vh - 24px)`};
 `
 
 export const Preview = styled.iframe<{ size: 'small' | 'normal' }>`
@@ -25,8 +24,8 @@ export const Preview = styled.iframe<{ size: 'small' | 'normal' }>`
   border: 0;
   height: ${(props) =>
     props.size === 'normal'
-      ? `calc(100vh - 48px)`
-      : `calc(100vh - 30vh - 48px)`};
+      ? `calc(100vh - 24px)`
+      : `calc(100vh - 30vh - 24px)`};
   background-color: white;
 `
 

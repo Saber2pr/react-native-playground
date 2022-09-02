@@ -5,6 +5,7 @@ import React, { useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 
 import { EditorAPI, makeSandCode } from '@saber2pr/monaco'
+import { Editor as MonacoEditor } from '@saber2pr/monaco'
 
 import {
   Container,
@@ -46,52 +47,62 @@ export const App = () => {
 
   return (
     <>
-      <Title>
-        <span>{ide_title}</span>
-        <Space>
-          <a className="cursor-pointer" target="_blank" href={ide_link_href}>
-            {ide_link_name}
-          </a>
-          <span>-</span>
-          <a className="cursor-pointer" target="_blank" onClick={openShareLink}>
-            Share Code
-          </a>
-        </Space>
-      </Title>
       <Container>
         <Content>
-          <Editor
-            ref={apiRef}
-            key={String(showDevTools)}
-            size={showDevTools ? 'small' : 'normal'}
-            modalFiles={files}
-            theme="monokai"
-            types={library.types}
-            loaderConfig={loaderConfig}
-            onInit={(editor) => {
-              apiRef.current = editor
-              const compile = async () => {
-                previewRef.current.srcdoc = `[TS Compiling]...`
-                const { output } = await editor.getOutput()
-                previewRef.current.srcdoc = makeSandCode(
-                  {
-                    main: `${output}`,
-                    ...sandbox,
-                  },
-                  'pro',
-                )
-              }
-              editor.getModel().onDidChangeContent(compile)
-              ide_ts_type && editor.addExtraLib(ide_ts_type)
-              compile()
-            }}
-          />
           <Preview
             size={showDevTools ? 'small' : 'normal'}
             id={sandboxId}
             ref={previewRef}
             srcDoc="[Sandbox Initialization]..."
           />
+          <Editor size={showDevTools ? 'small' : 'normal'}>
+            <Title>
+              <span>{ide_title}</span>
+              <Space>
+                <a
+                  className="cursor-pointer"
+                  target="_blank"
+                  href={ide_link_href}
+                >
+                  {ide_link_name}
+                </a>
+                <span>-</span>
+                <a
+                  className="cursor-pointer"
+                  target="_blank"
+                  onClick={openShareLink}
+                >
+                  Share Code
+                </a>
+              </Space>
+            </Title>
+            <MonacoEditor
+              style={{ height: 'calc(100% - 24px)' }}
+              ref={apiRef}
+              key={String(showDevTools)}
+              modalFiles={files}
+              theme="monokai"
+              types={library.types}
+              loaderConfig={loaderConfig}
+              onInit={(editor) => {
+                apiRef.current = editor
+                const compile = async () => {
+                  previewRef.current.srcdoc = `[TS Compiling]...`
+                  const { output } = await editor.getOutput()
+                  previewRef.current.srcdoc = makeSandCode(
+                    {
+                      main: `${output}`,
+                      ...sandbox,
+                    },
+                    'pro',
+                  )
+                }
+                editor.getModel().onDidChangeContent(compile)
+                ide_ts_type && editor.addExtraLib(ide_ts_type)
+                compile()
+              }}
+            />
+          </Editor>
         </Content>
         <ReactDevTools show={showDevTools}>
           <DevTools sandboxId={sandboxId} />
