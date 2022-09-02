@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 export const Container = styled.div`
   width: 100%;
@@ -11,21 +11,12 @@ export const Content = styled.div`
   display: flex;
 `
 
-const bottomHeight = '50vh'
-
-export const Editor = styled.div<{ placement: 'bottom' | 'right' }>`
-  position: fixed;
-  width: 100%;
-  height: ${bottomHeight};
-  bottom: 0;
-  right: 0;
-  ${(props) =>
-    props?.placement === 'bottom'
-      ? css``
-      : css`
-          width: calc(100vw - 480px);
-          height: 100vh;
-        `};
+export const Editor = styled.div<{ size: 'small' | 'normal' }>`
+  flex-grow: 1;
+  height: ${(props) =>
+    props.size === 'normal'
+      ? `calc(100vh - 24px)`
+      : `calc(100vh - 30vh - 24px)`};
 `
 
 export const Preview = styled.iframe<{ size: 'small' | 'normal' }>`
@@ -34,7 +25,7 @@ export const Preview = styled.iframe<{ size: 'small' | 'normal' }>`
   height: ${(props) =>
     props.size === 'normal'
       ? `calc(100vh - 24px)`
-      : `calc(100vh - ${bottomHeight})`};
+      : `calc(100vh - 30vh - 24px)`};
   background-color: white;
 `
 
