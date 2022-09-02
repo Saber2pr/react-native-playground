@@ -29,8 +29,8 @@ export const ConsolePanel: React.FC<ConsolePanelProps> = ({}) => {
 
   useEffect(() => {
     const handle = (event) => pushConsole(event.data)
-    window.addEventListener('message', handle)
-    return () => window.removeEventListener('message', handle)
+    self.addEventListener('message', handle)
+    return () => self.removeEventListener('message', handle)
   }, [])
 
   return <Container ref={console_ref}></Container>

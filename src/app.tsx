@@ -45,7 +45,7 @@ export const App = () => {
     const api = apiRef.current
     if (api) {
       const text = api.getValue()
-      window.open(`?text=${lz.compressToEncodedURIComponent(text)}`, '_blank')
+      self.open(`?text=${lz.compressToEncodedURIComponent(text)}`, '_blank')
     }
   }
 
