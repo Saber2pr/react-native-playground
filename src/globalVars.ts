@@ -36,7 +36,7 @@ export const ide_html =
     <script>
       installSandbox()
     </script>
-    <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs/require.js"></script><div id="root"></div>`
+    <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs/require.js"></script><div id="root">[TS Compiling]...</div>`
 
 const urlCode = getQuery('text')
 

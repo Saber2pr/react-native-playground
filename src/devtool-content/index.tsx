@@ -18,7 +18,12 @@ export const DevtoolContent: React.FC<DevtoolContentProps> = ({
   return (
     <DevToolPanels show={showDevTools}>
       {getDevtoolTabs({ sandboxId }).map((item) => (
-        <div style={{ display: item.key === tab ? 'block' : 'none' }}>
+        <div
+          style={{
+            display: item.key === tab ? 'block' : 'none',
+            height: '100%',
+          }}
+        >
           {item.content}
         </div>
       ))}
