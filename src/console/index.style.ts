@@ -4,6 +4,7 @@ export const Container = styled.div`
   height: 30vh;
   overflow: auto;
   font-size: 12px;
+  background-color: #fff;
   pre {
     line-height: 1.5rem;
     margin: 0;
