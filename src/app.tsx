@@ -4,18 +4,16 @@ import lz from 'lz-string'
 import React, { useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 
-import { EditorAPI, makeSandCode } from '@saber2pr/monaco'
-import { Editor as MonacoEditor } from '@saber2pr/monaco'
-
 import {
-  Container,
-  Content,
-  Editor,
-  Preview,
-  ReactDevTools,
-  Space,
-  Title,
-} from './app.style'
+  Editor as MonacoEditor,
+  EditorAPI,
+  makeSandCode,
+} from '@saber2pr/monaco'
+
+import { Container, Content, Editor, Preview, Space, Title } from './app.style'
+import { TabType } from './devtool-config'
+import { DevtoolContent } from './devtool-content'
+import { DevtoolTabs } from './devtool-tabs'
 import { files } from './files'
 import { loaderConfig } from './getLoaderConfig'
 import {
@@ -24,7 +22,6 @@ import {
   ide_title,
   ide_ts_type,
 } from './globalVars'
-import DevTools from '@saber2pr/monaco/lib/react/devtools'
 import { sandbox } from './sandbox'
 import { library } from './sandbox/library'
 
@@ -36,6 +33,7 @@ export const App = () => {
   const apiRef = useRef<EditorAPI>()
 
   const [showDevTools, setShowDevTools] = useState(true)
+  const [tab, setTab] = useState<TabType>('components')
 
   const openShareLink = () => {
     const api = apiRef.current
@@ -44,18 +42,6 @@ export const App = () => {
       window.open(`?text=${lz.compressToEncodedURIComponent(text)}`, '_blank')
     }
   }
-
-  const DevtoolsControl = (
-    <Title>
-      <span>React Developer Tools</span>
-      <a
-        className="cursor-pointer"
-        onClick={() => setShowDevTools(!showDevTools)}
-      >
-        {showDevTools ? 'Close' : 'Open'} Devtools
-      </a>
-    </Title>
-  )
 
   return (
     <>
@@ -91,7 +77,7 @@ export const App = () => {
             <MonacoEditor
               style={{ height: 'calc(100% - 24px)' }}
               ref={apiRef}
-              key={String(showDevTools)}
+              key={String(showDevTools + tab)}
               modalFiles={files}
               theme="monokai"
               types={library.types}
@@ -106,7 +92,7 @@ export const App = () => {
                       main: `${output}`,
                       ...sandbox,
                     },
-                    'pro',
+                    'dev',
                   )
                 }
                 editor.getModel().onDidChangeContent(compile)
@@ -116,9 +102,16 @@ export const App = () => {
             />
           </Editor>
         </Content>
-        <ReactDevTools show={showDevTools}>
-          <DevTools sandboxId={sandboxId} />
-        </ReactDevTools>
+        <DevtoolContent
+          tab={tab}
+          sandboxId={sandboxId}
+          showDevTools={showDevTools}
+        />
+        <DevtoolTabs
+          sandboxId={sandboxId}
+          onChange={setShowDevTools}
+          onChangeTab={setTab}
+        />
       </Container>
     </>
   )

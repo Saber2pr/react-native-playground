@@ -44,12 +44,6 @@ export const Title = styled.div`
   }
 `
 
-export const ReactDevTools = styled.div<{ show: boolean }>`
-  flex-grow: 1;
-  height: ${(_) => `calc(100vh - ${bottomHeight} - 24px)`};
-  display: ${(props) => (props?.show ? 'block' : 'none')};
-`
-
 export const Space = styled.div`
   & > *:nth-child(n + 1) {
     margin-left: 4px;
