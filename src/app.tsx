@@ -1,6 +1,7 @@
 import lz from 'lz-string'
 import React, { useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
+import pkg from '../package.json'
 
 import {
   Editor as MonacoEditor,
@@ -62,7 +63,7 @@ export const App = () => {
         />
         <Editor size={showDevTools ? 'small' : 'normal'}>
           <Title>
-            <span>{ide_title}</span>
+            <span>{ide_title} v{pkg.version}</span>
             <Space>
               <a
                 className="cursor-pointer"
