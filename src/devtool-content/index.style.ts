@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-export const DevToolPanels = styled.div<{ show: boolean }>`
+export const DevToolPanels = styled.div`
   position: fixed;
   width: 100%;
   height: 30vh;
   z-index: 11;
-  bottom: ${(props) => (props.show ? '0' : '-30vh')};
+  bottom: 0;
   left: 0;
 `

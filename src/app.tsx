@@ -1,5 +1,5 @@
 import lz from 'lz-string'
-import React, { useRef, useState } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 
 import {
@@ -33,6 +33,7 @@ import {
 } from './globalVars'
 import { sandbox } from './sandbox'
 import { library } from './sandbox/library'
+import { parseInt } from './utils/parseInt'
 
 const sandboxId = 'sandbox-preview'
 
@@ -44,7 +45,6 @@ export const App = () => {
 
   const apiRef = useRef<EditorAPI>()
 
-  const [showDevTools, setShowDevTools] = useState(true)
   const [tab, setTab] = useState<TabType>('components')
 
   const openShareLink = () => {
@@ -55,12 +55,18 @@ export const App = () => {
     }
   }
 
+  const clientWidth = useMemo(() => document.documentElement.clientWidth, [])
+  const clientHeight = useMemo(() => document.documentElement.clientHeight, [])
+
   const onDragStart = () => {
     const iframe = previewRef.current
     const iframeSize = previewSizeRef.current
     if (iframe && iframeSize) {
       iframe.style.display = 'none'
       iframeSize.style.display = 'flex'
+      iframeSize.innerHTML = `<div>${parseInt(
+        iframeSize.clientWidth,
+      )} x ${parseInt(iframeSize.clientHeight)}</div>`
     }
   }
   const onDragEnd = () => {
@@ -72,6 +78,8 @@ export const App = () => {
     }
   }
   const onDragSize = (pos: number, type: 'vertical' | 'horizontal') => {
+    if (pos < 0) return
+
     const iframe = previewRef.current
     const iframeSize = previewSizeRef.current
     const wrap = wrapRef.current
@@ -79,16 +87,22 @@ export const App = () => {
     const api = apiRef.current
     if (iframe && iframeSize && wrap && devtoolContent && api) {
       if (type === 'vertical') {
+        if (pos > clientWidth) return
         iframe.style.width = `${pos}px`
         iframeSize.style.width = `${pos}px`
         const sizeHeight = iframeSize.clientHeight
-        iframeSize.innerHTML = `<div>${pos} x ${sizeHeight}</div>`
+        iframeSize.innerHTML = `<div>${parseInt(pos)} x ${parseInt(
+          sizeHeight,
+        )}</div>`
         wrap.style.width = `calc(100vw - ${pos}px)`
       } else {
+        if (pos > clientHeight - 24) return
         iframe.style.height = `${pos}px`
         iframeSize.style.height = `${pos}px`
         const sizeWidth = iframeSize.clientWidth
-        iframeSize.innerHTML = `<div>${sizeWidth} x ${pos}</div>`
+        iframeSize.innerHTML = `<div>${parseInt(sizeWidth)} x ${parseInt(
+          pos,
+        )}</div>`
         wrap.style.height = `${pos}px`
         devtoolContent.style.height = `calc(100vh - ${pos}px - 24px)`
       }
@@ -102,13 +116,12 @@ export const App = () => {
       <GlobalStyle />
       <Content>
         <Preview
-          size={showDevTools ? 'small' : 'normal'}
           id={sandboxId}
           ref={previewRef}
           srcDoc="[Sandbox Initialization]..."
         />
         <PreviewSize ref={previewSizeRef} />
-        <Editor ref={wrapRef} size={showDevTools ? 'small' : 'normal'}>
+        <Editor ref={wrapRef}>
           <DragSize
             type="vertical"
             onMove={onDragSize}
@@ -140,7 +153,6 @@ export const App = () => {
           <MonacoEditor
             style={{ height: 'calc(100% - 24px)' }}
             ref={apiRef}
-            key={String(showDevTools + tab)}
             modalFiles={files}
             theme="monokai"
             types={library.types}
@@ -165,15 +177,16 @@ export const App = () => {
           />
         </Editor>
       </Content>
-      <DevtoolContent
-        ref={devtoolContentRef}
-        tab={tab}
-        sandboxId={sandboxId}
-        showDevTools={showDevTools}
-      />
+      <DevtoolContent ref={devtoolContentRef} tab={tab} sandboxId={sandboxId} />
       <DevtoolTabs
         sandboxId={sandboxId}
-        onChange={setShowDevTools}
+        onChange={(show) => {
+          if (show) {
+            onDragSize(clientHeight * 0.67, 'horizontal')
+          } else {
+            onDragSize(clientHeight - 24, 'horizontal')
+          }
+        }}
         onChangeTab={setTab}
         drag={{
           onMove: onDragSize,

@@ -5,7 +5,6 @@ import { getDevtoolTabs, TabType } from '@/devtool-config'
 import { DevToolPanels } from './index.style'
 
 export interface DevtoolContentProps {
-  showDevTools: boolean
   tab: TabType
   sandboxId: string
 }
@@ -13,9 +12,9 @@ export interface DevtoolContentProps {
 export const DevtoolContent = React.forwardRef<
   HTMLDivElement,
   DevtoolContentProps
->(({ showDevTools, tab, sandboxId }, ref) => {
+>(({ tab, sandboxId }, ref) => {
   return (
-    <DevToolPanels ref={ref} show={showDevTools}>
+    <DevToolPanels ref={ref}>
       {getDevtoolTabs({ sandboxId }).map((item) => (
         <div
           key={item.key}

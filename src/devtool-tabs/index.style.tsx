@@ -16,6 +16,7 @@ export const Tabs = styled.div`
   line-height: 24px;
   padding: 0px 8px;
   position: relative;
+  user-select: none;
   &::before {
     ${CssBorder}
     left: 0;
