@@ -64,6 +64,8 @@ export const ConsolePanel: React.FC<ConsolePanelProps> = ({ sandboxId }) => {
   }
 
   useEffect(() => {
+    renderConsole()
+
     const handle = (event) => pushConsole(event.data)
     self.addEventListener('message', handle)
     return () => self.removeEventListener('message', handle)
