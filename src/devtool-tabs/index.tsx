@@ -1,8 +1,10 @@
 import { getDevtoolTabs, TabType } from '@/devtool-config'
+import { DragSize, DragSizeProps } from '@/drag-size'
 import React, { useState } from 'react'
 
 import {
   CloseIcon,
+  Content,
   OpenIcon,
   Tabs,
   TabsClose,
@@ -14,12 +16,14 @@ export interface DevtoolTabsProps {
   onChange(showDevTools: boolean): void
   onChangeTab(tab: TabType): void
   sandboxId: string
+  drag: Omit<DragSizeProps, 'type'>
 }
 
 export const DevtoolTabs: React.FC<DevtoolTabsProps> = ({
   onChange,
   onChangeTab,
   sandboxId,
+  drag,
 }) => {
   const [showDevTools, setShowDevTools] = useState(true)
 
@@ -27,28 +31,31 @@ export const DevtoolTabs: React.FC<DevtoolTabsProps> = ({
 
   return (
     <Tabs>
-      <TabsList>
-        {getDevtoolTabs({ sandboxId }).map((item) => (
-          <TabsListItem
-            className={item.key === tab ? 'active' : ''}
-            key={item.key}
-            onClick={() => {
-              setTab(item.key)
-              onChangeTab(item.key)
-            }}
-          >
-            {item.label}
-          </TabsListItem>
-        ))}
-      </TabsList>
-      <TabsClose
-        onClick={() => {
-          setShowDevTools(!showDevTools)
-          onChange(!showDevTools)
-        }}
-      >
-        {showDevTools ? CloseIcon : OpenIcon}
-      </TabsClose>
+      <DragSize {...drag} type="horizontal" />
+      <Content>
+        <TabsList>
+          {getDevtoolTabs({ sandboxId }).map((item) => (
+            <TabsListItem
+              className={item.key === tab ? 'active' : ''}
+              key={item.key}
+              onClick={() => {
+                setTab(item.key)
+                onChangeTab(item.key)
+              }}
+            >
+              {item.label}
+            </TabsListItem>
+          ))}
+        </TabsList>
+        <TabsClose
+          onClick={() => {
+            setShowDevTools(!showDevTools)
+            onChange(!showDevTools)
+          }}
+        >
+          {showDevTools ? CloseIcon : OpenIcon}
+        </TabsClose>
+      </Content>
     </Tabs>
   )
 }

@@ -1,7 +1,6 @@
 import lz from 'lz-string'
 import React, { useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
-import pkg from '../package.json'
 
 import {
   Editor as MonacoEditor,
@@ -9,18 +8,21 @@ import {
   makeSandCode,
 } from '@saber2pr/monaco'
 
+import pkg from '../package.json'
 import {
   Container,
   Content,
   Editor,
   GlobalStyle,
   Preview,
+  PreviewSize,
   Space,
   Title,
 } from './app.style'
 import { TabType } from './devtool-config'
 import { DevtoolContent } from './devtool-content'
 import { DevtoolTabs } from './devtool-tabs'
+import { DragSize } from './drag-size'
 import { files } from './files'
 import { loaderConfig } from './getLoaderConfig'
 import {
@@ -36,6 +38,9 @@ const sandboxId = 'sandbox-preview'
 
 export const App = () => {
   const previewRef = useRef<HTMLIFrameElement>()
+  const previewSizeRef = useRef<HTMLDivElement>()
+  const wrapRef = useRef<HTMLDivElement>()
+  const devtoolContentRef = useRef<HTMLDivElement>()
 
   const apiRef = useRef<EditorAPI>()
 
@@ -50,6 +55,47 @@ export const App = () => {
     }
   }
 
+  const onDragStart = () => {
+    const iframe = previewRef.current
+    const iframeSize = previewSizeRef.current
+    if (iframe && iframeSize) {
+      iframe.style.display = 'none'
+      iframeSize.style.display = 'flex'
+    }
+  }
+  const onDragEnd = () => {
+    const iframe = previewRef.current
+    const iframeSize = previewSizeRef.current
+    if (iframe && iframeSize) {
+      iframe.style.display = 'block'
+      iframeSize.style.display = 'none'
+    }
+  }
+  const onDragSize = (pos: number, type: 'vertical' | 'horizontal') => {
+    const iframe = previewRef.current
+    const iframeSize = previewSizeRef.current
+    const wrap = wrapRef.current
+    const devtoolContent = devtoolContentRef.current
+    const api = apiRef.current
+    if (iframe && iframeSize && wrap && devtoolContent && api) {
+      if (type === 'vertical') {
+        iframe.style.width = `${pos}px`
+        iframeSize.style.width = `${pos}px`
+        const sizeHeight = iframeSize.clientHeight
+        iframeSize.innerHTML = `<div>${pos} x ${sizeHeight}</div>`
+        wrap.style.width = `calc(100vw - ${pos}px)`
+      } else {
+        iframe.style.height = `${pos}px`
+        iframeSize.style.height = `${pos}px`
+        const sizeWidth = iframeSize.clientWidth
+        iframeSize.innerHTML = `<div>${sizeWidth} x ${pos}</div>`
+        wrap.style.height = `${pos}px`
+        devtoolContent.style.height = `calc(100vh - ${pos}px - 24px)`
+      }
+      api.getInstance().layout()
+    }
+  }
+
   return (
     <Container>
       {/* @ts-ignore */}
@@ -61,9 +107,18 @@ export const App = () => {
           ref={previewRef}
           srcDoc="[Sandbox Initialization]..."
         />
-        <Editor size={showDevTools ? 'small' : 'normal'}>
+        <PreviewSize ref={previewSizeRef} />
+        <Editor ref={wrapRef} size={showDevTools ? 'small' : 'normal'}>
+          <DragSize
+            type="vertical"
+            onMove={onDragSize}
+            onEnd={onDragEnd}
+            onStart={onDragStart}
+          />
           <Title>
-            <span>{ide_title} v{pkg.version}</span>
+            <span>
+              {ide_title} v{pkg.version}
+            </span>
             <Space>
               <a
                 className="cursor-pointer"
@@ -111,6 +166,7 @@ export const App = () => {
         </Editor>
       </Content>
       <DevtoolContent
+        ref={devtoolContentRef}
         tab={tab}
         sandboxId={sandboxId}
         showDevTools={showDevTools}
@@ -119,6 +175,11 @@ export const App = () => {
         sandboxId={sandboxId}
         onChange={setShowDevTools}
         onChangeTab={setTab}
+        drag={{
+          onMove: onDragSize,
+          onEnd: onDragEnd,
+          onStart: onDragStart,
+        }}
       />
     </Container>
   )

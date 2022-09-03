@@ -14,9 +14,6 @@ export const Tabs = styled.div`
   height: 24px;
   background-color: #f1f3f4;
   line-height: 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 0px 8px;
   position: relative;
   &::before {
@@ -29,6 +26,12 @@ export const Tabs = styled.div`
     left: 0;
     bottom: -1px;
   }
+`
+
+export const Content = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `
 
 export const CloseIcon = (

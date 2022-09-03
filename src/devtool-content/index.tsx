@@ -10,13 +10,12 @@ export interface DevtoolContentProps {
   sandboxId: string
 }
 
-export const DevtoolContent: React.FC<DevtoolContentProps> = ({
-  showDevTools,
-  tab,
-  sandboxId,
-}) => {
+export const DevtoolContent = React.forwardRef<
+  HTMLDivElement,
+  DevtoolContentProps
+>(({ showDevTools, tab, sandboxId }, ref) => {
   return (
-    <DevToolPanels show={showDevTools}>
+    <DevToolPanels ref={ref} show={showDevTools}>
       {getDevtoolTabs({ sandboxId }).map((item) => (
         <div
           key={item.key}
@@ -30,4 +29,4 @@ export const DevtoolContent: React.FC<DevtoolContentProps> = ({
       ))}
     </DevToolPanels>
   )
-}
+})

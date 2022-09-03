@@ -37,6 +37,17 @@ export const Preview = styled.iframe<{ size: 'small' | 'normal' }>`
   background-color: white;
 `
 
+export const PreviewSize = styled.div`
+  width: 480px;
+  background-color: white;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: #80808085;
+  user-select: none;
+  font-size: 24px;
+`
+
 export const Title = styled.div`
   height: 24px;
   background-color: #323233;
