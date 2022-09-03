@@ -25,15 +25,17 @@ export const ConsolePanel: React.FC<ConsolePanelProps> = ({ sandboxId }) => {
           if (sandbox) {
             lastInput.current = input.value
             if (input.value === 'console.clear()') {
-              console_ref.current.innerHTML = `${ClearTip}<div class="exec-input"><input autofocus /></div>`
+              consoleContent = ClearTip
+              renderConsole()
+            } else {
+              sandbox.contentWindow.window.postMessage(
+                {
+                  method: '__MESSAGE_CONSOLE_EXEC__',
+                  value: encodeURI(input.value),
+                },
+                '*',
+              )
             }
-            sandbox.contentWindow.window.postMessage(
-              {
-                method: '__MESSAGE_CONSOLE_EXEC__',
-                value: encodeURI(input.value),
-              },
-              '*',
-            )
           }
         }
         if (e.key === 'ArrowUp' || e.keyCode === 38) {
