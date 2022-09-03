@@ -15,5 +15,27 @@ export const Container = styled.div`
       background-color: #ecf1f8;
       border-bottom: 1px solid #ccdef5;
     }
+    &.tip {
+      color: gray;
+    }
+  }
+  .exec-input {
+    position: relative;
+    input {
+      display: block;
+      height: 20px;
+      width: 100%;
+      padding-left: 20px;
+      border: none;
+      border-bottom: 1px solid #e8e8e8;
+      outline: none;
+    }
+    &::before {
+      content: '>';
+      position: absolute;
+      left: 6px;
+      line-height: 20px;
+      color: #80aaf7;
+    }
   }
 `

@@ -1,15 +1,51 @@
 import React, { useEffect, useRef } from 'react'
 import { Container } from './index.style'
 
-export interface ConsolePanelProps {}
+export interface ConsolePanelProps {
+  sandboxId: string
+}
 
-export const ConsolePanel: React.FC<ConsolePanelProps> = ({}) => {
+const ClearTip = '<pre class="tip">Console was cleared</pre>'
+
+export const ConsolePanel: React.FC<ConsolePanelProps> = ({ sandboxId }) => {
   const console_ref = useRef<HTMLDivElement>()
+  const lastInput = useRef<string>('')
 
-  let consoleContent = ''
+  let consoleContent = ClearTip
+
+  const setupInput = () => {
+    const input =
+      console_ref.current.querySelector<HTMLInputElement>(`.exec-input>input`)
+    if (input) {
+      input.onkeydown = (e) => {
+        if (e.key === 'Enter' || e.keyCode === 13) {
+          const sandbox = document.querySelector<HTMLIFrameElement>(
+            `#${sandboxId}`,
+          )
+          if (sandbox) {
+            lastInput.current = input.value
+            if (input.value === 'console.clear()') {
+              console_ref.current.innerHTML = `${ClearTip}<div class="exec-input"><input autofocus /></div>`
+            }
+            sandbox.contentWindow.window.postMessage(
+              {
+                method: '__MESSAGE_CONSOLE_EXEC__',
+                value: encodeURI(input.value),
+              },
+              '*',
+            )
+          }
+        }
+        if (e.key === 'ArrowUp' || e.keyCode === 38) {
+          input.value = lastInput.current
+        }
+      }
+    }
+  }
 
   const renderConsole = () => {
-    console_ref.current.innerHTML = consoleContent
+    console_ref.current.innerHTML = `${consoleContent}<div class="exec-input"><input autofocus /></div>`
+    setupInput()
     console_ref.current.scrollTo({
       top: console_ref.current.scrollHeight,
       behavior: 'smooth',

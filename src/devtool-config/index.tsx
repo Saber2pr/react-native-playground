@@ -16,13 +16,13 @@ export interface GetDevtoolTabsOps {
 
 export const getDevtoolTabs = ({ sandboxId }: GetDevtoolTabsOps): TabConfig => [
   {
-    label: 'Console',
-    key: 'console',
-    content: <ConsolePanel />,
-  },
-  {
     label: 'Components',
     key: 'components',
     content: <DevTools sandboxId={sandboxId} />,
+  },
+  {
+    label: 'Console',
+    key: 'console',
+    content: <ConsolePanel sandboxId={sandboxId} />,
   },
 ]
