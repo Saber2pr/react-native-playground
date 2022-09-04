@@ -1,5 +1,5 @@
-import { ConsolePanel } from '@/console'
 import DevTools from '@saber2pr/monaco/lib/react/devtools'
+import ConsolePanel from '@saber2pr/monaco/lib/react/devtools/console'
 import React from 'react'
 
 export type TabType = 'console' | 'components'
