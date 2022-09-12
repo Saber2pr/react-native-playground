@@ -1,8 +1,10 @@
+import Outline from '@saber2pr/monaco/lib/react/devtools/outline'
+import { EditorAPI } from '@saber2pr/monaco'
 import DevTools from '@saber2pr/monaco/lib/react/devtools'
 import ConsolePanel from '@saber2pr/monaco/lib/react/devtools/console'
 import React from 'react'
 
-export type TabType = 'console' | 'components'
+export type TabType = 'console' | 'components' | 'outline'
 
 export type TabConfig = {
   label: string
@@ -11,10 +13,14 @@ export type TabConfig = {
 }[]
 
 export interface GetDevtoolTabsOps {
-  sandboxId: string
+  sandboxId?: string
+  api?: EditorAPI
 }
 
-export const getDevtoolTabs = ({ sandboxId }: GetDevtoolTabsOps): TabConfig => [
+export const getDevtoolTabs = ({
+  sandboxId,
+  api,
+}: GetDevtoolTabsOps): TabConfig => [
   {
     label: 'Components',
     key: 'components',
@@ -24,5 +30,10 @@ export const getDevtoolTabs = ({ sandboxId }: GetDevtoolTabsOps): TabConfig => [
     label: 'Console',
     key: 'console',
     content: <ConsolePanel sandboxId={sandboxId} />,
+  },
+  {
+    label: 'Outline',
+    key: 'outline',
+    content: <Outline api={api} />,
   },
 ]

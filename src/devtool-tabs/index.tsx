@@ -15,14 +15,12 @@ import {
 export interface DevtoolTabsProps {
   onChange(showDevTools: boolean): void
   onChangeTab(tab: TabType): void
-  sandboxId: string
   drag: Omit<DragSizeProps, 'type'>
 }
 
 export const DevtoolTabs: React.FC<DevtoolTabsProps> = ({
   onChange,
   onChangeTab,
-  sandboxId,
   drag,
 }) => {
   const [showDevTools, setShowDevTools] = useState(true)
@@ -34,7 +32,7 @@ export const DevtoolTabs: React.FC<DevtoolTabsProps> = ({
       <DragSize {...drag} type="horizontal" />
       <Content>
         <TabsList>
-          {getDevtoolTabs({ sandboxId }).map((item) => (
+          {getDevtoolTabs({}).map((item) => (
             <TabsListItem
               className={item.key === tab ? 'active' : ''}
               key={item.key}

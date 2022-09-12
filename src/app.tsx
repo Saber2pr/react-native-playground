@@ -177,9 +177,13 @@ export const App = () => {
           />
         </Editor>
       </Content>
-      <DevtoolContent ref={devtoolContentRef} tab={tab} sandboxId={sandboxId} />
-      <DevtoolTabs
+      <DevtoolContent
+        ref={devtoolContentRef}
+        tab={tab}
         sandboxId={sandboxId}
+        api={apiRef.current}
+      />
+      <DevtoolTabs
         onChange={(show) => {
           if (show) {
             onDragSize(clientHeight * 0.67, 'horizontal')
