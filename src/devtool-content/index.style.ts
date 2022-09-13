@@ -7,4 +7,5 @@ export const DevToolPanels = styled.div`
   z-index: 11;
   bottom: 0;
   left: 0;
+  background-color: #fff;
 `
