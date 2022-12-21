@@ -23,10 +23,10 @@
     "tpl"
   ],
   "dependencies": {
-    "@saber2pr/monaco": "^0.0.62",
+    "@saber2pr/monaco": "^0.0.74",
     "lz-string": "^1.4.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^0.0.0-experimental-fabef7a6b-20221215",
+    "react-dom": "^0.0.0-experimental-fabef7a6b-20221215",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
