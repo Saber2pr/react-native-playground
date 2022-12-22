@@ -1107,10 +1107,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@saber2pr/monaco@^0.0.74":
-  version "0.0.74"
-  resolved "https://registry.npmjs.org/@saber2pr/monaco/-/monaco-0.0.74.tgz#5ba781352d2f60ef870c636b9bef4f1a5b99bc53"
-  integrity sha512-LKxXn/kqF9KpWdiLNk1aZf3lPSi3e+y4B2SXOMmNd8DMfd93CiDa5Bk/Kewgb6lC80Hu55fWqf+akGzzmOWppA==
+"@saber2pr/monaco@^0.0.79":
+  version "0.0.79"
+  resolved "https://registry.npmjs.org/@saber2pr/monaco/-/monaco-0.0.79.tgz#592b07d8a9ff86572c0fce0d705886ba0064d02d"
+  integrity sha512-xsDhefi2nm9mpTzi5iA+QrHdquMeVxQXsL6UGbcLB7Gv7kXgOaaQBrfo1HfFhXYuYtYVMT/KF6xGJwDKcav2Cg==
   dependencies:
     "@monaco-editor/loader" "^1.3.0"
     "@saber2pr/utils" "^0.0.7"
